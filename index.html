@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"> 
+<head>
+  <meta charset="utf-8">
+  <title>Todo List</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <link rel="stylesheet" media="screen" href="assets/css/style.css" >
+</head>
+
+<body>
+  <!--container start-->
+  <div class="container">
+    <!--main section start-->
+    <main>
+      <section class="todo-section">
+        <div class="wrapper">
+          <h1 class="heading">Inayatullah's Todo List</h1>
+          <select name="select" id="select">
+            <option value="all">Personal</option>
+            <option value="done">Work</option>
+            <option value="pending">Custom</option>
+          </select>
+          <div class="todo-container">
+              <form action="#FIXME" method="get" class="form">
+                <div class="input-group">
+                  <input type="text" class="todo-input">
+                </div>
+                <span class="submit-btn">
+                  <input type="submit">
+                </span>
+              </form>
+          </div>
+          <ul class="display-todo">
+            <li class="todo-list">
+              <div class="todo-info">Lorem ipsum dolor sit amet consectetur,</div>
+              <div class="category">Personal</div>
+              <button class="control mark-done-btn">Mark as Done</button>
+              <button class="control delete-btn">Delete</button>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <!--main section end-->
+
+  </div>
+  <!--container end-->
+<script src="assets/js/script.js"></script>
+</body>
+</html>
