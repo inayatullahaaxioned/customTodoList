@@ -19,7 +19,6 @@ form.addEventListener('submit', function () {
             getCategory(dataStore);
             categorySelect.innerHTML += `<option value="${isCustom}">${isCustom}</option>
             <option value="custom">Custom</option>`
-            // categorySelect.innerHTML += `<option value="custom">Custom</option>`
         }
         let todoObj = {
             todo: todoInput.value,
@@ -135,23 +134,17 @@ let lists = document.querySelectorAll('.todo-list');
 
 function getCategory(dataStore){
     let predefined = ["Personal", "Work"];
-    categorySelect.innerHTML = "";
     dataStore.forEach(function(obj){
-        let match = false;
-        predefined.forEach(function(value){
-            console.log(value == obj.type);
-            if(value == obj.type){
-                match = true;
-            }
-        });
-        if(!match){
-            predefined.push(obj.type);
-        }
+        let type = obj.type;
+        if(!predefined.includes(type)){
+            predefined.push(type);
+        };
     })
+    console.log(predefined);
+    categorySelect.innerHTML = "";
     predefined.forEach(function(value){
         categorySelect.innerHTML += `<option value="${value}">${value}</option>`
     })
-    // categorySelect.innerHTML += `<option value="custom">Custom</option>`
 }
 
 //filter right complete or incomplete
@@ -172,11 +165,13 @@ function checkStatus(){
     });
 };
 
+//function for showing list on filter
 function listAdd(elem){
     elem.classList.remove('hide');
     elem.classList.add('show');
 }
 
+//function for hiding list on filter
 function listRemove(elem){
     elem.classList.add('hide');
     elem.classList.remove('show');
