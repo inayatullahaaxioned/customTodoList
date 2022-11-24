@@ -224,7 +224,8 @@ input { width: 100%; }
 
 .delete-btn::before { content: "\f1f8"; }
 
-.input-group input { 
+.input-group input,
+.category { 
   font-size: 17px;
   text-transform: capitalize;
 }
@@ -242,6 +243,7 @@ select {
 .category {
   width: 100px;
   padding: 10px 15px;
+  border: none;
   background-color: #fff;
   border-left: 1px solid purple;
   vertical-align: middle;
