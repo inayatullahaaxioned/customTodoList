@@ -17,11 +17,10 @@ form.addEventListener('submit', function () {
         if (isCustom == "custom") {
             isCustom = document.querySelector('.category').value;
             getCategory(dataStore, isCustom);
-
         }
         let todoObj = {
             todo: todoInput.value,
-            type: isCustom,
+            type: `${isCustom.charAt(0).toUpperCase()}${isCustom.slice(1, isCustom.length)}`,
             todoStatus: "pending"
         }
         dataStore.push(todoObj);
@@ -31,11 +30,11 @@ form.addEventListener('submit', function () {
     customInputRemove();
     let lists = document.querySelectorAll('.todo-list');
     let value = categorySelect.value;
-    filterTodos(lists,value)
+    filterTodos(lists, value)
 });
 
 // function for showing on selected in filter 
-function filterTodos(lists , caterogySelected ){
+function filterTodos(lists, caterogySelected) {
     lists.forEach(function (list) {
         let doneTodo = list.getAttribute('data-set');
         if (caterogySelected == "All") {
@@ -99,6 +98,7 @@ function checkStorage() {
                 dataStore.splice(index, 1);
                 todoStorage(dataStore);
                 checkStorage();
+                getCategory(dataStore);
             })
         });
 
@@ -152,27 +152,30 @@ categorySelect.addEventListener('change', function () {
     }
     let lists = document.querySelectorAll('.todo-list');
     let value = this.value;
-    filterTodos(lists,value);
+    filterTodos(lists, value);
+    checkStatus();
 });
 
 
 function getCategory(dataStore, isCustom = "") {
     let predefined = ["All", "Personal", "Work"];
+    let categoryInput = document.querySelector('.category');
+    if (categoryInput) {
+        let isCustom = categoryInput.value;
+        if (isCustom) {
+            predefined.push(isCustom);
+        }
+    }
     dataStore.forEach(function (obj) {
         let type = obj.type;
         if (!predefined.includes(type)) {
             predefined.push(type);
         };
     })
-    console.log(predefined);
     categorySelect.innerHTML = "";
     predefined.forEach(function (value) {
         categorySelect.innerHTML += `<option value="${value}">${value}</option>`
     })
-    if (isCustom) {
-        categorySelect.innerHTML += `<option value="${isCustom}">${isCustom}</option>`
-
-    }
     categorySelect.innerHTML += `<option value="custom">Custom</option>`
 
 }
